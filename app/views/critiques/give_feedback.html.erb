@@ -1,0 +1,19 @@
+<%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
+  <%= text_area_tag(:instructor_code, nil, name: 'comment', size: "30x3", required: true) %>
+  <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
+  <br />
+  <%= submit_tag '+', name: 'positive', style:'width:115px;background-color:#ACA9E8;border-color:#4036C5;color:#4036C5;' %>
+  <%= submit_tag '-', name: 'negative', style:'width:115px;background-color:#ED94FE;border-color:#BC01DD;color:#BC01DD;' %>
+<% end %>
+<br />
+<% @critiques.each do |crit| %>
+    <% if crit.positive %>
+        <div class="positive_comment comment">
+    <% else %>
+        <div class="negative_comment comment">
+    <% end %>
+    <%= crit.positive ? '(+)' : '(-)' %>
+    <%= "#{crit.comment}" %><br />
+    <%= "votes: #{crit.votes}" %>
+    </div>
+<% end %>

@@ -1,0 +1,1 @@
+json.array! @critiques, partial: 'critiques/critique', as: :critique

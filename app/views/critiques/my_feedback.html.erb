@@ -1,0 +1,11 @@
+<% @critiques.each do |crit| %>
+    <% if crit.positive %>
+        <div class="positive_comment comment">
+    <% else %>
+        <div class="negative_comment comment">
+    <% end %>
+    <%= crit.positive ? '(+)' : '(-)' %>
+    <%= "#{crit.comment}" %><br />
+    <%= "votes: #{crit.votes}" %>
+    </div>
+<% end %>

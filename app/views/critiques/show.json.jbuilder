@@ -1,0 +1,1 @@
+json.partial! "critiques/critique", critique: @critique

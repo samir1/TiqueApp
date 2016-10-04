@@ -1,0 +1,37 @@
+<%= form_for(critique) do |f| %>
+  <% if critique.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(critique.errors.count, "error") %> prohibited this critique from being saved:</h2>
+
+      <ul>
+      <% critique.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+  </div>
+
+  <div class="field">
+    <%= f.label :votes %>
+    <%= f.text_field :votes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author_id %>
+    <%= f.text_field :author_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :receiver_id %>
+    <%= f.number_field :receiver_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @critique.comment %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @critique.votes %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @critique.author_id %>
+</p>
+
+<p>
+  <strong>Receiver:</strong>
+  <%= @critique.receiver_id %>
+</p>
+
+<%= link_to 'Edit', edit_critique_path(@critique) %> |
+<%= link_to 'Back', critiques_path %>

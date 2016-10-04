@@ -1,0 +1,42 @@
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> sign up errors:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message.sub 'Password digest', 'Password' %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'First name' %>
+    <%= f.text_field :fname, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Last name' %>
+    <%= f.text_field :lname, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Email' %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Password' %>
+    <%= f.text_field :password_digest, value: nil, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Confirm password' %>
+    <%= f.text_field :password_digest_confirmation, class: 'form-control' %>
+  </div> 
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

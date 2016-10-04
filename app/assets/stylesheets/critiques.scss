@@ -1,0 +1,16 @@
+// Place all the styles related to the Critiques controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.positive_comment {
+    background-color: #eeedff;
+}
+
+.negative_comment {
+    background-color: #fbeaff;
+}
+
+.comment {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
