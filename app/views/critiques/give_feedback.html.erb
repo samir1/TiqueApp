@@ -14,7 +14,8 @@
 <footer class="footer">
   <div class="container">
     <%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
-      <%= text_area_tag(:instructor_code, nil, name: 'comment', size: "49x3", required: true, placeholder: 'What do you like or dislike?') %>
+      <% instructor_name = User.find_by(user_code: params[:instructor_code]).fname.capitalize %>
+      <%= text_area_tag(:instructor_code, nil, name: 'comment', size: "49x3", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %>
       <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
       <br />
       <%= submit_tag '+', name: 'positive', id:'positive-submit-btn' %>
