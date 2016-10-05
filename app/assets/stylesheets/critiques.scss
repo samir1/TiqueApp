@@ -14,3 +14,32 @@
     margin-top: 4px;
     margin-bottom: 4px;
 }
+
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+    text-align:center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#positive-submit-btn {
+    width: 179px;
+    background-color: #ACA9E8;
+    border-color: #4036C5;
+    color: #4036C5;
+}
+
+#negative-submit-btn {
+    width: 179px;
+    background-color: #ED94FE;
+    border-color: #BC01DD;
+    color: #BC01DD;
+}
+
+.feedback-list {
+    margin-bottom: 114px;
+}

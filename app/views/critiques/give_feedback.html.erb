@@ -1,11 +1,4 @@
-<%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
-  <%= text_area_tag(:instructor_code, nil, name: 'comment', size: "30x3", required: true, placeholder: 'What do you like or dislike?') %>
-  <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
-  <br />
-  <%= submit_tag '+', name: 'positive', style:'width:115px;background-color:#ACA9E8;border-color:#4036C5;color:#4036C5;' %>
-  <%= submit_tag '-', name: 'negative', style:'width:115px;background-color:#ED94FE;border-color:#BC01DD;color:#BC01DD;' %>
-<% end %>
-<br />
+<div class="container feedback-list">
 <% @critiques.each do |crit| %>
     <% if crit.positive %>
         <div class="positive_comment comment">
@@ -17,3 +10,15 @@
     <%= "votes: #{crit.votes}" %>
     </div>
 <% end %>
+</div>
+<footer class="footer">
+  <div class="container">
+    <%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
+      <%= text_area_tag(:instructor_code, nil, name: 'comment', size: "49x3", required: true, placeholder: 'What do you like or dislike?') %>
+      <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
+      <br />
+      <%= submit_tag '+', name: 'positive', id:'positive-submit-btn' %>
+      <%= submit_tag '-', name: 'negative', id:'negative-submit-btn' %>
+    <% end %>
+  </div>
+</footer>
