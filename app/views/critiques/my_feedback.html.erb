@@ -1,3 +1,4 @@
+<div class="container">
 <% @critiques.each do |crit| %>
     <% if crit.positive %>
         <div class="positive_comment comment">
@@ -9,3 +10,4 @@
     <%= "votes: #{crit.votes}" %>
     </div>
 <% end %>
+</div>

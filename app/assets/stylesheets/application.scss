@@ -18,10 +18,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-color: #FFF;
+body > div {
+    margin-top: 55px;
 }

@@ -1,6 +1,8 @@
+<div class="container">
 <% ints_lookups = InstructorStudentLookup.where(student_id: current_user.id) %>
 <% ints_lookups.each do |inst_lookup| %>
     <% inst = User.find(inst_lookup.instructor_id) %>
     <a href="/give_feedback/<%= inst.user_code %>"><%= "#{inst.fname} #{inst.lname}" %></a>
     <br />
 <% end %>
+</div>
