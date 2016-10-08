@@ -45,3 +45,17 @@ footer {
 .feedback-list {
     margin-bottom: 114px;
 }
+
+.inline {
+    display: inline;
+}
+
+.voteArrow {
+    color: blue;
+    padding: 4px;
+}
+
+.voteArrow:hover, .voteArrow:active {
+    color: blue;
+    font-weight: 800;
+}

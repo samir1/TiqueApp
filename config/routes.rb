@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post    '/submit_feedback/:instructor_code', to: 'critiques#submit_feedback'
     get     '/users',                            to: 'home#index'
     get     '/rules',                            to: 'application#rules'
+    post     '/submit_vote/:instructor_code',     to: 'votes#create'
     # resources :critiques
     
 end
