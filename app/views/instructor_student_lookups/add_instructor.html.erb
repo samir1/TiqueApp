@@ -1,6 +1,8 @@
-<%= form_tag("/addinstructor", method: "post") do %>
-  <%= label_tag(:instructor_code, "Instructor code:") %>
-  <%= text_field_tag(:instructor_code) %>
-  <br /><br />
-  <%= submit_tag("Add") %>
-<% end %>
+<div class="container">
+    <%= form_tag("/addinstructor", method: "post") do %>
+      <%= label_tag(:instructor_code, "Instructor code:") %>
+      <%= text_field_tag(:instructor_code) %>
+      <br /><br />
+      <%= submit_tag("Add") %>
+    <% end %>
+</div>

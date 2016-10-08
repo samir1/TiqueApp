@@ -88,16 +88,6 @@ class CritiquesController < ApplicationController
     redirect_to "/give_feedback/#{params[:instructor_code]}"
   end
 
-  def get_votes_for_critique_id critique_id
-    Vote.where(critique_id: critique_id, upvote: true).count - Vote.where(critique_id: critique_id, upvote: false).count
-  end
-
-  def get_vote_for_critique_id critique_id
-    vote = Vote.find_by(voter_id: current_user.id, critique_id: critique_id)
-  end
-
-  helper_method :get_votes_for_critique_id, :get_vote_for_critique_id
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_critique

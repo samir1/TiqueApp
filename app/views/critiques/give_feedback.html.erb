@@ -1,4 +1,5 @@
-<div class="container feedback-list">
+<div class="container feedback-list col-md-6 col-md-offset-3">
+<center><h1><%= User.find_by(user_code: params[:instructor_code]).fname %></h1></center>
 <% @critiques.each do |crit| %>
     <% if crit.positive %>
       <div class="positive_comment comment">
