@@ -62,8 +62,9 @@ class CritiquesController < ApplicationController
   end
 
   def my_feedback
-    # @critiques = Critique.where(receiver_id: current_user.id).order(votes: :desc)
-    @critiques = Critique.where(receiver_id: current_user.id)
+    @critiques = Critique.where(receiver_id: current_user.id).order(created_at: :desc)
+    @plus_critiques = Critique.where(receiver_id: current_user.id, positive: true)
+    @neg_critiques = Critique.where(receiver_id: current_user.id, positive: false)
   end
 
   def give_feedback
@@ -75,8 +76,9 @@ class CritiquesController < ApplicationController
     elsif !(InstructorStudentLookup.find_by(instructor_id: receiver.id, student_id: current_user.id))
       redirect_to '/viewinstructors'
     else
-      # @critiques = Critique.where(receiver_id: receiver.id).order(votes: :desc)
-      @critiques = Critique.where(receiver_id: receiver.id)
+      @critiques = Critique.where(receiver_id: receiver.id).order(created_at: :desc)
+      @plus_critiques = Critique.where(receiver_id: receiver.id, positive: true)
+      @neg_critiques = Critique.where(receiver_id: receiver.id, positive: false)
     end
   end
 
@@ -96,6 +98,6 @@ class CritiquesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def critique_params
-      params.require(:critique).permit(:comment, :votes, :author_id, :receiver_id, :positive)
+      params.require(:critique).permit(:comment, :author_id, :receiver_id, :positive)
     end
 end

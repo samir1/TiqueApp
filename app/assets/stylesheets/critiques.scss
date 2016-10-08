@@ -29,14 +29,14 @@ footer {
 }
 
 #positive-submit-btn {
-    width: 179px;
+    width: 155px;
     background-color: #ACA9E8;
     border-color: #4036C5;
     color: #4036C5;
 }
 
 #negative-submit-btn {
-    width: 179px;
+    width: 154px;
     background-color: #ED94FE;
     border-color: #BC01DD;
     color: #BC01DD;
@@ -53,9 +53,26 @@ footer {
 .voteArrow {
     color: blue;
     padding: 4px;
+    font-weight:800;
 }
 
 .voteArrow:hover, .voteArrow:active {
     color: blue;
     font-weight: 800;
+}
+
+.innerNav {
+    text-align: center;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    color: grey
+}
+
+.hoverUnderline:hover {
+    text-decoration: underline;
+}
+
+.sortingNav {
+    text-align: center;
+    background-color: orange;
 }
