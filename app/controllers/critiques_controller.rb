@@ -77,8 +77,8 @@ class CritiquesController < ApplicationController
       redirect_to '/viewinstructors'
     else
       @critiques = Critique.where(receiver_id: receiver.id).order(created_at: :desc)
-      @plus_critiques = Critique.where(receiver_id: receiver.id, positive: true)
-      @neg_critiques = Critique.where(receiver_id: receiver.id, positive: false)
+      @plus_critiques = Critique.where(receiver_id: receiver.id, positive: true).order(votes: :desc)
+      @neg_critiques = Critique.where(receiver_id: receiver.id, positive: false).order(votes: :desc)
     end
   end
 
