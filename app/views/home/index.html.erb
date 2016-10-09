@@ -1,11 +1,21 @@
-<div class="container">
+<div class="container" style="text-align: center;">
 <h1>Tique</h1>
+<p>Feedback made effortless</p>
+<div>
 <% if !logged_in? %>
-    <a class="btn btn-primary" id="login-btn" href="/login">Login</a>
-    <a class="btn btn-success" id="signup-btn" href="/signup">Signup</a>
+    <a class="btn btn-primary" id="login-btn" href="/login" style="color:white;">Login</a>
+    <a class="btn btn-success" id="signup-btn" href="/signup" style="color:white;">Signup</a>
 <% else %>
     Click 'View Instructors' to give feedback to an instructor.
-    <br />
-    <%= image_tag("Phone_Tilt.jpg", :alt => "Tique", :width => "400px") %>
 <% end %>
+</div>
+<div class="row">
+<div class="col-lg-6 offset-lg-3">
+<%= image_tag("Phone_Tilt.jpg", :alt => "Tique", :width => "400px") %>
+</div>
+
+<div class="col-lg-3" style="padding-top: 50px;">
+Why is getting honest, helpful feedback so hard? Tique makes it easy allowing to get bite-sized critiques anonymously from those you've shared a consent code with.
+</div>
+</div>
 </div>
