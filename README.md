@@ -1,24 +1,3 @@
-# README
+{<img src = "https://www.codeship.io/projects/ec1bfc50-7016-0134-c8c0-46027ae0316a/status" />}[https://www.codeship.io/projects/ec1bfc50-7016-0134-c8c0-46027ae0316a/status]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Tique
