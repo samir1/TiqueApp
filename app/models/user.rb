@@ -17,7 +17,7 @@ class User < ApplicationRecord
 	private
 	def randomize_user_code
 		begin
-			self.user_code = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
+			self.user_code = (0...4).map { ('a'..'z').to_a[rand(26)] }.join
 		end while User.where(id: self.id).exists?
 	end
 
