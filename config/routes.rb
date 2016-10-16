@@ -19,6 +19,6 @@ Rails.application.routes.draw do
     get     '/rules',                            to: 'application#rules'
     post    '/submit_vote/:instructor_code',     to: 'votes#create'
     # get     '/critiques',                        to: 'critiques#index'
-    resources :critiques, only: [:show, :index]
+    resources :critiques, only: [:show, :index, :destroy]
     
 end
