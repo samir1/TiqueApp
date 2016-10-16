@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
     root    'home#index'
-    resources :users
     get     '/signup',                           to: 'users#new'
     get     '/credentials',                      to: 'users#show'
     post    'users/create'
@@ -17,7 +16,9 @@ Rails.application.routes.draw do
     post    '/submit_feedback/:instructor_code', to: 'critiques#submit_feedback'
     get     '/users',                            to: 'home#index'
     get     '/rules',                            to: 'application#rules'
-    post     '/submit_vote/:instructor_code',     to: 'votes#create'
-    # resources :critiques
+    post    '/submit_vote/:instructor_code',     to: 'votes#create'
+    # get     '/critiques',                        to: 'critiques#index'
+    resources :users
+    resources :critiques, only: [:show, :index]
     
 end

@@ -28,12 +28,12 @@
 
   <div class="field">
     <%= f.label 'Password' %>
-    <%= f.text_field :password_digest, value: nil, class: 'form-control' %>
+    <%= f.text_field :password_digest, value: nil, class: 'form-control', type: 'password' %>
   </div>
 
   <div class="field">
     <%= f.label 'Confirm password' %>
-    <%= f.text_field :password_digest_confirmation, class: 'form-control' %>
+    <%= f.text_field :password_digest_confirmation, class: 'form-control', type: 'password' %>
   </div> 
 
   <div class="actions">

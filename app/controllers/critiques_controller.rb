@@ -4,13 +4,21 @@ class CritiquesController < ApplicationController
   # GET /critiques
   # GET /critiques.json
   def index
-    @critiques = Critique.all
+    if !current_user
+      redirect_to '/'
+    end
+
+    if current_user.email == 'samir@test.com' || current_user.email == 'priyatham.ven@gmail.com'
+      @critiques = Critique.all
+    else
+      redirect_to '/'
+    end
   end
 
   # GET /critiques/1
   # GET /critiques/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /critiques/new
   def new
@@ -18,8 +26,8 @@ class CritiquesController < ApplicationController
   end
 
   # GET /critiques/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /critiques
   # POST /critiques.json
@@ -39,17 +47,17 @@ class CritiquesController < ApplicationController
 
   # PATCH/PUT /critiques/1
   # PATCH/PUT /critiques/1.json
-  def update
-    respond_to do |format|
-      if @critique.update(critique_params)
-        format.html { redirect_to @critique, notice: 'Critique was successfully updated.' }
-        format.json { render :show, status: :ok, location: @critique }
-      else
-        format.html { render :edit }
-        format.json { render json: @critique.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @critique.update(critique_params)
+  #       format.html { redirect_to @critique, notice: 'Critique was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @critique }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @critique.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /critiques/1
   # DELETE /critiques/1.json
