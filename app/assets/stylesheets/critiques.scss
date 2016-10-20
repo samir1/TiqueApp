@@ -15,6 +15,7 @@
     margin-bottom: 4px;
     padding: 5px;
     border-radius: 5px;
+    min-height: 63px;
 }
 
 footer {
@@ -56,16 +57,6 @@ footer {
     display: inline;
 }
 
-.voteArrow {
-    color: blue;
-    padding: 4px;
-    font-weight:800;
-}
-
-.voteArrow:hover, .voteArrow:active {
-    color: blue;
-    font-weight: 800;
-}
 
 .innerNav {
     text-align: center;
@@ -83,10 +74,24 @@ footer {
     background-color: orange;
 }
 
-.upArrow {
-    color: #828282;
+.arrows {
+    z-index:10;
+    float: right;
+    padding-right:5px;
+    text-align:center;
+    top: 0px;
+    right: 0px;
 }
 
-.downArrow {
-    color: #828282;
+.comment-text {
+    display: inline-block;
+    width: 90%;
+}
+
+.upArrow {
+    margin-bottom:-4px;
+}
+
+.votes_number {
+    margin-bottom:-4px;
 }
