@@ -30,16 +30,22 @@ footer {
 
 #positive-submit-btn {
     width: 155px;
-    background-color: #ACA9E8;
+    //background-color: #ACA9E8;
+    background-color:white;
     border-color: #4036C5;
     color: #4036C5;
+    border-radius: 5px;
+    border: 3px solid;
 }
 
 #negative-submit-btn {
     width: 154px;
-    background-color: #ED94FE;
+    //background-color: #ED94FE;
+    background-color: white;
     border-color: #BC01DD;
     color: #BC01DD;
+    border-radius: 5px;
+    border: 3px solid;
 }
 
 .feedback-list {
