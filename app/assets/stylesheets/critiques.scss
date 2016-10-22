@@ -3,19 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .positive_comment {
+    //box-shadow: 0 4px 8px 0 #d1cff9;
     background-color: #eeedff;
+    //background-color: #FCFCFC;
 }
 
 .negative_comment {
+    //box-shadow: 0 4px 8px 0 #ecbef7;
     background-color: #fbeaff;
+    //background-color: #FCFCFC;
 }
 
 .comment {
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 3px;
     min-height: 63px;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.1);
 }
 
 footer {
@@ -31,7 +36,6 @@ footer {
 
 #positive-submit-btn {
     width: 155px;
-    //background-color: #ACA9E8;
     background-color:white;
     border-color: #4036C5;
     color: #4036C5;
@@ -41,7 +45,6 @@ footer {
 
 #negative-submit-btn {
     width: 154px;
-    //background-color: #ED94FE;
     background-color: white;
     border-color: #BC01DD;
     color: #BC01DD;
