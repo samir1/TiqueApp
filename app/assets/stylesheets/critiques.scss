@@ -10,14 +10,17 @@ html, body {
     //box-shadow: 0 4px 8px 0 #d1cff9;
     // background-color: #eeedff;
     //background-color: #FCFCFC;
-    border-top: 2px solid #A0B3FF;
+    // border-top: 3px solid #A0B3FF;
+    // border-top: 3px solid #7992f7;
+    border-top: 3px solid #6c98e2;
 }
 
 .negative_comment {
     //box-shadow: 0 4px 8px 0 #ecbef7;
     // background-color: #fbeaff;
     //background-color: #FCFCFC;
-    border-top: 2px solid #FFBCD5;
+    // border-top: 3px solid #FFBCD5;
+    border-top: 3px solid #fcaecb;
 }
 
 .comment {
@@ -26,7 +29,6 @@ html, body {
     padding: 5px;
     border-radius: 1px;
     min-height: 63px;
-    // box-shadow: 0 3px 4px 0 rgba(0,0,0,0.1);
     box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);
     transition: 0.2s;
     padding-top: 10px;
@@ -48,24 +50,28 @@ footer {
     padding-bottom: 7px;
 }
 
-#positive-submit-btn {
-    width: 155px;
+#positive_submit_btn {
+    width: 42%;
     background-color:white;
     border-color: #5E00FF;
     color: #5E00FF;
     border-radius: 5px;
     border: 3px solid;
     font-size: 15px;
+    float: left;
+    height: 40px;
 }
 
-#negative-submit-btn {
-    width: 154px;
+#negative_submit_btn {
+    width: 42%;
     background-color: white;
     border-color: #CF0066;
     color: #CF0066;
     border-radius: 5px;
     border: 3px solid;
     font-size: 15px;
+    float: right;
+    height: 40px;
 }
 
 .feedback-list {
@@ -90,7 +96,6 @@ footer {
 
 .sortingNav {
     text-align: center;
-    background-color: orange;
 }
 
 .arrows {
@@ -100,6 +105,7 @@ footer {
     text-align:center;
     top: 0px;
     right: 0px;
+    color: #797979;
 }
 
 .comment-text {

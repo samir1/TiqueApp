@@ -1,5 +1,6 @@
 <% instructor_name = User.find_by(user_code: params[:instructor_code]).fname.capitalize %>
 <script type="text/javascript">
+
 $(function() {
     showRecent();
 });
@@ -9,8 +10,8 @@ function showPluses() {
     $("#recent_critiques").hide("fast");
     $("#positive_critiques").show("slow");
 
-    $("#negative-submit-btn").hide("fast");
-    $("#positive-submit-btn").show("slow");
+    $("#negative_submit_btn").hide("fast");
+    $("#positive_submit_btn").show("slow");
 
     $("textarea#comment").attr("placeholder", "What do you like about <%= instructor_name %>'s teaching?");
 }
@@ -21,8 +22,8 @@ function showNegs() {
     $("#negative_critiques").show("slow");
 
 
-    $("#positive-submit-btn").hide("fast");
-    $("#negative-submit-btn").show("slow");
+    $("#positive_submit_btn").hide("fast");
+    $("#negative_submit_btn").show("slow");
 
     $("textarea#comment").attr("placeholder", "What do you dislike about <%= instructor_name %>'s teaching?");
 }
@@ -33,8 +34,8 @@ function showRecent() {
     $("#recent_critiques").show("slow");
 
 
-    $("#positive-submit-btn").show("fast");
-    $("#negative-submit-btn").show("show");
+    $("#positive_submit_btn").show("fast");
+    $("#negative_submit_btn").show("show");
 
     $("textarea#comment").attr("placeholder", "What do you like or dislike about <%= instructor_name %>'s teaching?");
 }
@@ -180,13 +181,13 @@ function showRecent() {
     </div>  
 </div>
 <footer class="footer">
-    <div class="container">
+    <div class="container col-md-6 col-md-offset-3">
         <%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
-            <%= text_area_tag(:instructor_code, nil, name: 'comment', id:"comment", size: "41x3", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %>
+            <%= text_area_tag(:instructor_code, nil, name: 'comment', id:"comment", rows: "2", class: "form-control", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %>
             <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
             <br />
-            <%= submit_tag '+', name: 'positive', id:'positive-submit-btn' %>
-            <%= submit_tag '-', name: 'negative', id:'negative-submit-btn' %>
+            <%= submit_tag '+', name: 'positive', id:'positive_submit_btn' %>
+            <%= submit_tag '-', name: 'negative', id:'negative_submit_btn' %>
         <% end %>
     </div>
 </footer>
