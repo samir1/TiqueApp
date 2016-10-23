@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :codes
     resources :users
     root    'home#index'
     get     '/signup',                           to: 'users#new'
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     get     '/users',                            to: 'home#index'
     get     '/rules',                            to: 'application#rules'
     post    '/submit_vote/:instructor_code',     to: 'votes#create'
+    get     '/get_tiqued',                       to: 'codes#index'
     # get     '/critiques',                        to: 'critiques#index'
     resources :critiques, only: [:show, :index, :destroy]
     
