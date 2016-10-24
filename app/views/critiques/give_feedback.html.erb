@@ -183,7 +183,7 @@ function showRecent() {
 <footer class="footer">
     <div class="container col-md-6 col-md-offset-3">
         <%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
-            <%= text_area_tag(:instructor_code, nil, name: 'comment', id:"comment", rows: "2", class: "form-control", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %>
+            <%= text_area_tag(:instructor_code, nil, name: 'comment', id:"comment", rows: "2", maxlength: "200", class: "form-control", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %>
             <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
             <br />
             <%= submit_tag '+', name: 'positive', id:'positive_submit_btn' %>
