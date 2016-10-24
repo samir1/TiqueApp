@@ -1,0 +1,31 @@
+<% if !logged_in? %>
+<% controller.redirect_to '/' %>
+<% end %>
+
+<div class="container">
+    <div>
+        Personal code: <%= @current_user.user_code %>
+    </div>
+    <br />
+    <div>
+        <% my_codes.each do |code| %>
+        <%= code.title %> <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/codes/<%= code.id %>">❌</a><br />
+        <%= code.code_value %>
+        <br /><br />
+        <% end %>
+    </div>
+    <div>
+        <%= form_tag("/codes", method: "post") do %>
+            <%= hidden_field_tag(:owner, current_user.id) %>
+
+            Title
+            <div class="field">
+                <%= text_field_tag :title %>
+            </div>
+
+            <div class="actions">
+                <%= submit_tag 'Create class' %>
+            </div>
+        <% end %>
+    </div>
+</div>

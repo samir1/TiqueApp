@@ -7,13 +7,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <% if logged_in? %>
-    <script type="text/javascript">
-      function showCode() {
-        alert("Your code is <%= current_user.user_code %>");
-      }
-    </script>
-    <% end %>
   </head>
 
   <body>
@@ -37,7 +30,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Feedback <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/my_feedback">View Feedback</a></li>
-                    <li><a href="#" onclick="showCode();">Get Tiqued</a></li>
+                    <li><a href="/get_tiqued">Get Tiqued</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
