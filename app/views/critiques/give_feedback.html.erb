@@ -13,6 +13,11 @@ function showPluses() {
     $("#negative_submit_btn").hide("fast");
     $("#positive_submit_btn").show("slow");
 
+    $("#positive_submit_btn").css("float","none");
+    $("#positive_submit_btn").css("text-align","center");
+    $("#positive_submit_btn").css("display","inline-block");
+
+
     $("textarea#comment").attr("placeholder", "What do you like about <%= instructor_name %>'s teaching?");
 }
 
@@ -25,6 +30,10 @@ function showNegs() {
     $("#positive_submit_btn").hide("fast");
     $("#negative_submit_btn").show("slow");
 
+    $("#negative_submit_btn").css("float","none");
+    $("#negative_submit_btn").css("text-align","center");
+    $("#negative_submit_btn").css("display","inline-block");
+
     $("textarea#comment").attr("placeholder", "What do you dislike about <%= instructor_name %>'s teaching?");
 }
 
@@ -36,6 +45,10 @@ function showRecent() {
 
     $("#positive_submit_btn").show("fast");
     $("#negative_submit_btn").show("show");
+
+
+    $("#positive_submit_btn").css("float","left");
+    $("#negative_submit_btn").css("float","right");
 
     $("textarea#comment").attr("placeholder", "What do you like or dislike about <%= instructor_name %>'s teaching?");
 }
