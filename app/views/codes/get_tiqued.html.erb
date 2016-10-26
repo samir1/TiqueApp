@@ -4,7 +4,7 @@
 
 <div class="container">
     <div>
-        Personal code: <%= @current_user.user_code %>
+        Personal code: <%= Code.where(owner: @current_user.id).find_by(code_type: 'personal').code_value %>
     </div>
     <br />
     <div>
