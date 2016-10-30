@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026035655) do
+ActiveRecord::Schema.define(version: 20161026043808) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "owner"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20161026035655) do
   end
 
   create_table "instructor_student_lookups", force: :cascade do |t|
-    t.integer  "instructor_id"
+    t.string   "code_value"
     t.integer  "student_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -14,9 +14,3 @@ inst.save!
 
 samir = User.create(fname: 'Samir', lname: 'Undavia', email: 'samir@test.com', password_digest: 'samir123', password_digest_confirmation: 'samir123')
 samir.save!
-
-instStu = InstructorStudentLookup.create(instructor_id: 2, student_id: 1)
-instStu.save!
-
-# cri = Critique.create(comment: 'tique comment 1 from Student to Instructor', author_id: 1, receiver_id:2)
-# cri.save!

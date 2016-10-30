@@ -1,8 +1,11 @@
 <div class="container">
 <% ints_lookups = InstructorStudentLookup.where(student_id: current_user.id) %>
 <% ints_lookups.each do |inst_lookup| %>
-    <% inst = User.find(inst_lookup.instructor_id) %>
-    <a href="/give_feedback/<%= inst.user_code %>"><%= "#{inst.fname} #{inst.lname}" %></a>
-    <br />
+    <% if inst_lookup.code_value.length >= 4 %>
+        <% code = Code.find_by(code_value: inst_lookup.code_value) %>
+        <% inst = User.find(code.owner) %>
+        <a href="/give_feedback/<%= code.code_value %>"><%= "#{inst.fname} #{inst.lname}: #{code.title}" %></a>
+        <br />
+    <% end %>
 <% end %>
 </div>

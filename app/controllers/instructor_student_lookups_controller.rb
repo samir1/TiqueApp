@@ -4,15 +4,19 @@ class InstructorStudentLookupsController < ApplicationController
     end
 
     def create
-        inst = User.find_by(user_code: params[:instructor_code].downcase)
-        existing_record = 
-        if !inst || !current_user
+        if !current_user
+            redirect_to '/'
+        end
+
+        code = Code.find_by(code_value: params[:instructor_code].downcase)
+
+        if !code
             render html: "<script>alert('Invalid code');window.location = '/addinstructor';</script>".html_safe
-        elsif InstructorStudentLookup.find_by(instructor_id: inst.id, student_id: current_user.id)
+        elsif InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id)
             render html: "<script>alert('You have already entered this code');window.location = '/addinstructor';</script>".html_safe
         else 
             inst_stu = InstructorStudentLookup.new
-            inst_stu.instructor_id = inst.id
+            inst_stu.code_value = code.code_value
             inst_stu.student_id = current_user.id
 
             if inst_stu.save

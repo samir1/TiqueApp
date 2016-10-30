@@ -81,7 +81,7 @@ class CritiquesController < ApplicationController
       redirect_to '/'
     elsif !receiver
       redirect_to '/viewinstructors'
-    elsif !(InstructorStudentLookup.find_by(instructor_id: receiver.id, student_id: current_user.id))
+    elsif !(InstructorStudentLookup.find_by(code_value: params[:instructor_code], student_id: current_user.id))
       redirect_to '/viewinstructors'
     else
       @critiques = Critique.where(receiver_id: receiver.id).order(created_at: :desc)
