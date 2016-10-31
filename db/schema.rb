@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026043808) do
+ActiveRecord::Schema.define(version: 20161030235330) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "owner"
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 20161026043808) do
 
   create_table "critiques", force: :cascade do |t|
     t.string   "comment"
-    t.integer  "votes",       default: 0
+    t.integer  "votes",      default: 0
     t.integer  "author_id"
-    t.integer  "receiver_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "positive",    default: true, null: false
+    t.string   "code_value"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "positive",   default: true, null: false
   end
 
   create_table "instructor_student_lookups", force: :cascade do |t|

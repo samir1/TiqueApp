@@ -76,24 +76,23 @@ class CritiquesController < ApplicationController
   end
 
   def give_feedback
-    receiver = User.find_by(user_code: params[:instructor_code])
+    code = Code.find_by(code_value: params[:instructor_code])
     if !logged_in?
       redirect_to '/'
-    elsif !receiver
+    elsif !code
       redirect_to '/viewinstructors'
     elsif !(InstructorStudentLookup.find_by(code_value: params[:instructor_code], student_id: current_user.id))
       redirect_to '/viewinstructors'
     else
-      @critiques = Critique.where(receiver_id: receiver.id).order(created_at: :desc)
-      @plus_critiques = Critique.where(receiver_id: receiver.id, positive: true).order(votes: :desc)
-      @neg_critiques = Critique.where(receiver_id: receiver.id, positive: false).order(votes: :desc)
+      @critiques = Critique.where(code_value: params[:instructor_code]).order(created_at: :desc)
+      @plus_critiques = Critique.where(code_value: params[:instructor_code], positive: true).order(votes: :desc)
+      @neg_critiques = Critique.where(code_value: params[:instructor_code], positive: false).order(votes: :desc)
     end
   end
 
   def submit_feedback
-    receiver = User.find_by(user_code: params[:instructor_code])
     pos = params[:negative] ? false : true
-    @critique = Critique.new(author_id: current_user.id, receiver_id: receiver.id, comment: params[:comment], positive: pos)
+    @critique = Critique.new(author_id: current_user.id, code_value: params[:instructor_code], comment: params[:comment], positive: pos)
     @critique.save
     redirect_to "/give_feedback/#{params[:instructor_code]}"
   end
@@ -106,6 +105,6 @@ class CritiquesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def critique_params
-      params.require(:critique).permit(:comment, :author_id, :receiver_id, :positive)
+      params.require(:critique).permit(:comment, :author_id, :instructor_code, :positive)
     end
 end
