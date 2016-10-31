@@ -1,0 +1,75 @@
+<script type="text/javascript">
+$(function() {
+    showPluses();
+});
+
+function showPluses() {
+    $("#negative_critiques").hide("fast");
+    $("#recent_critiques").hide("fast");
+    $("#positive_critiques").show("slow");
+
+    $("#negative_submit_btn").hide("fast");
+    $("#positive_submit_btn").show("slow");
+}
+
+function showNegs() {
+    $("#positive_critiques").hide("fast");
+    $("#recent_critiques").hide("fast");
+    $("#negative_critiques").show("slow");
+
+
+    $("#positive_submit_btn").hide("fast");
+    $("#negative_submit_btn").show("slow");
+}
+
+function showRecent() {
+    $("#positive_critiques").hide("fast");
+    $("#negative_critiques").hide("fast");
+    $("#recent_critiques").show("slow");
+
+
+    $("#positive_submit_btn").show("fast");
+    $("#negative_submit_btn").show("show");
+}
+</script>
+</script>
+
+<div class="container">
+    <div class="feedback-list col-md-8 col-md-offset-2">
+        <center><h3>My Feedback</h3></center>
+        <div class="innerNav">
+            <span class="hoverUnderline" onclick="showPluses();">Pluses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showNegs();">Minuses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showRecent();">Recent</span>
+        </div>
+        <div id="positive_critiques">
+            <% @plus_critiques.each do |crit| %>
+                <div class="positive_comment comment">
+                    <%= "#{crit.comment}" %><br />
+                    <%= "votes: #{get_votes_for_critique_id crit.id}" %>
+                </div>
+            <% end %>
+        </div>    
+        <div id="negative_critiques">
+            <% @neg_critiques.each do |crit| %>
+                <div class="negative_comment comment">
+                    <%= "#{crit.comment}" %><br />
+                    <%= "votes: #{get_votes_for_critique_id crit.id}" %>
+                </div>
+            <% end %>
+        </div>
+        <div id="recent_critiques">
+            <% @critiques.each do |crit| %>
+                <% if crit.positive %>
+                <div class="positive_comment comment">
+                <% else !crit.positive %>
+                <div class="negative_comment comment">
+                <% end %>
+                    <%= "#{crit.comment}" %><br />
+                    <%= "votes: #{get_votes_for_critique_id crit.id}" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-md-2">
+    <!-- Calendar will go here -->
+    </div>
+</div>

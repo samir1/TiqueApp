@@ -70,9 +70,16 @@ class CritiquesController < ApplicationController
   end
 
   def my_feedback
-    @critiques = Critique.where(receiver_id: current_user.id).order(created_at: :desc)
-    @plus_critiques = Critique.where(receiver_id: current_user.id, positive: true)
-    @neg_critiques = Critique.where(receiver_id: current_user.id, positive: false)
+    if !logged_in?
+      redirect_to '/'
+    end
+    @my_codes = Code.where(owner: current_user.id)
+  end
+
+  def my_feedback_with_code
+    @critiques = Critique.where(code_value: params[:instructor_code]).order(created_at: :desc)
+    @plus_critiques = Critique.where(code_value: params[:instructor_code], positive: true)
+    @neg_critiques = Critique.where(code_value: params[:instructor_code], positive: false)
   end
 
   def give_feedback

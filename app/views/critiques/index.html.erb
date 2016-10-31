@@ -9,7 +9,7 @@
       <th>Comment</th>
       <th>Votes</th>
       <th>Author</th>
-      <th>Receiver</th>
+      <th>Class Code</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,7 +20,7 @@
         <td><%= critique.comment %></td>
         <td><%= critique.votes %></td>
         <td><%= critique.author_id %></td>
-        <td><%= critique.receiver_id %></td>
+        <td><%= critique.code_value %></td>
         <td><%= link_to 'Destroy', critique, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
