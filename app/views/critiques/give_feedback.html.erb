@@ -69,9 +69,9 @@ function showRecent() {
                         <div class="voteArrow upArrow">▲</div>
                         <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
                         <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                            <%= hidden_field_tag(:upvote, true) %>
+                            <%= hidden_field_tag(:upvote, false) %>
                             <%= hidden_field_tag(:critique_id, crit.id) %>
-                            <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▼</div>
+                            <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
                         <% end %>
                     </div>
                 <% elsif vote_lookup && !vote_lookup.upvote %>
@@ -93,7 +93,7 @@ function showRecent() {
                         <% end %>
                         <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
                         <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                            <%= hidden_field_tag(:upvote, true) %>
+                            <%= hidden_field_tag(:upvote, false) %>
                             <%= hidden_field_tag(:critique_id, crit.id) %>
                             <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
                         <% end %>
@@ -112,7 +112,7 @@ function showRecent() {
                         <div class="voteArrow upArrow">▲</div>
                         <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
                         <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                            <%= hidden_field_tag(:upvote, true) %>
+                            <%= hidden_field_tag(:upvote, false) %>
                             <%= hidden_field_tag(:critique_id, crit.id) %>
                             <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
                         <% end %>
@@ -136,7 +136,7 @@ function showRecent() {
                         <% end %>
                         <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
                         <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                            <%= hidden_field_tag(:upvote, true) %>
+                            <%= hidden_field_tag(:upvote, false) %>
                             <%= hidden_field_tag(:critique_id, crit.id) %>
                             <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
                         <% end %>
