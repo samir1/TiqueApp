@@ -10,33 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030235330) do
-
-  create_table "codes", force: :cascade do |t|
-    t.integer  "owner",                        null: false
-    t.string   "code_value",                   null: false
-    t.string   "title",                        null: false
-    t.string   "code_id",                      null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "code_type",  default: "class", null: false
-  end
+ActiveRecord::Schema.define(version: 20161009041954) do
 
   create_table "critiques", force: :cascade do |t|
-    t.string   "comment",                   null: false
-    t.integer  "votes",      default: 0,    null: false
+    t.string   "comment",                    null: false
+    t.integer  "votes",       default: 0,    null: false
     t.integer  "author_id"
-    t.string   "code_value"
-    t.boolean  "positive",   default: true, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "receiver_id"
+    t.boolean  "positive",    default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "instructor_student_lookups", force: :cascade do |t|
-    t.string   "code_value"
+    t.integer  "instructor_id"
     t.integer  "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
