@@ -54,7 +54,7 @@ function showRecent() {
 }
 </script>
 
-<div class="container feedback-list col-md-8 col-md-offset-2">
+<div class="feedback-list col-md-8 col-md-offset-2">
     <center><h1><%= instructor_name + " " + User.find_by(user_code: params[:instructor_code]).lname[0,1].capitalize + "." %></h1></center>
     <div class="innerNav">
         <span class="hoverUnderline" onclick="showPluses();">Pluses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showNegs();">Minuses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showRecent();">Recent</span>
