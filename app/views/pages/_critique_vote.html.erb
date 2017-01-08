@@ -1,0 +1,46 @@
+<% vote_lookup = get_vote_for_critique_id crit.id %>
+<% if vote_lookup && vote_lookup.upvote %>
+  <div class="arrows">
+    <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline", remote: true) do %>
+      <%= hidden_field_tag(:upvote, true) %>
+      <%= hidden_field_tag(:critique_id, crit.id) %>
+      <div onclick="$(this).parents('form:first').submit();" class="voteArrow upvoted"><span class="glyphicon glyphicon-menu-up"></span></div>
+    <% end %>
+    <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
+    <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline", remote: true) do %>
+      <%= hidden_field_tag(:upvote, false) %>
+      <%= hidden_field_tag(:critique_id, crit.id) %>
+      <div onclick="$(this).parents('form:first').submit();" class="voteArrow"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+    <% end %>
+  </div>
+
+<% elsif vote_lookup && !vote_lookup.upvote %>
+  <div class="arrows">
+    <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline", remote: true) do %>
+      <%= hidden_field_tag(:upvote, true) %>
+      <%= hidden_field_tag(:critique_id, crit.id) %>
+      <div onclick="$(this).parents('form:first').submit();" class="voteArrow"><span class="glyphicon glyphicon-menu-up"></span></div>
+    <% end %>
+    <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
+    <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline", remote: true) do %>
+      <%= hidden_field_tag(:upvote, false) %>
+      <%= hidden_field_tag(:critique_id, crit.id) %>
+      <div onclick="$(this).parents('form:first').submit();" class="voteArrow downvoted"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+    <% end %>
+  </div>
+
+<% else %>
+  <div class="arrows">
+    <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline", remote: true) do %>
+      <%= hidden_field_tag(:upvote, true) %>
+      <%= hidden_field_tag(:critique_id, crit.id) %>
+      <div onclick="$(this).parents('form:first').submit();" class="voteArrow"><span class="glyphicon glyphicon-menu-up"></span></div>
+    <% end %>
+    <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
+    <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline", remote: true) do %>
+      <%= hidden_field_tag(:upvote, false) %>
+      <%= hidden_field_tag(:critique_id, crit.id) %>
+      <div onclick="$(this).parents('form:first').submit();" class="voteArrow"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+    <% end %>
+  </div>
+<% end %>

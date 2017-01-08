@@ -1,6 +1,6 @@
 <div class="container">
     <% @my_codes.each do |code| %>
-    <a href="/my_feedback/<%= code.code_value %>"><%= code.title %></a>
+    <a href="/my_feedback/<%= code.code_id %>"><%= code.title %></a>
     <br />
     <% end %>
 </div>

@@ -5,6 +5,7 @@ class Code < ApplicationRecord
     before_create :randomize_user_code, :generate_code_id
     validates :owner, presence: true
     validates :title, presence: true
+    belongs_to :user, :foreign_key => :owner
 
     private
     def randomize_user_code

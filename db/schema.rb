@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030235330) do
+ActiveRecord::Schema.define(version: 20161230070018) do
 
   create_table "codes", force: :cascade do |t|
-    t.integer  "owner"
-    t.string   "code_value"
-    t.string   "title"
-    t.string   "code_id"
+    t.integer  "owner",                        null: false
+    t.string   "code_value",                   null: false
+    t.string   "title",                        null: false
+    t.string   "code_id",                      null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "code_type",  default: "class", null: false
   end
 
   create_table "critiques", force: :cascade do |t|
-    t.string   "comment"
-    t.integer  "votes",      default: 0
+    t.string   "comment",                   null: false
+    t.integer  "votes",      default: 0,    null: false
     t.integer  "author_id"
     t.string   "code_value"
+    t.boolean  "positive",   default: true, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.boolean  "positive",   default: true, null: false
   end
 
   create_table "instructor_student_lookups", force: :cascade do |t|
@@ -40,11 +40,10 @@ ActiveRecord::Schema.define(version: 20161030235330) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "fname"
-    t.string   "lname"
+    t.string   "fname",           null: false
+    t.string   "lname",           null: false
     t.string   "email"
-    t.string   "user_code"
-    t.string   "password_digest"
+    t.string   "password_digest", null: false
     t.string   "salt"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

@@ -3,9 +3,11 @@
 <% ints_lookups.each do |inst_lookup| %>
     <% if inst_lookup.code_value.to_s.length >= 4 %>
         <% code = Code.find_by(code_value: inst_lookup.code_value) %>
-        <% inst = User.find(code.owner) %>
-        <a href="/give_feedback/<%= code.code_value %>"><%= "#{inst.fname} #{inst.lname}: #{code.title}" %></a>
-        <br />
+        <% if code.present? %>
+            <% inst = User.find(code.try(:owner)) %>
+            <a href="/give_feedback/<%= code.code_id %>"><%= "#{inst.try(:fname)} #{inst.try(:lname)}: #{code.try(:title)}" %></a>
+            <br />
+        <% end %>
     <% end %>
 <% end %>
 </div>

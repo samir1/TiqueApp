@@ -1,0 +1,13 @@
+<% if params[:critique_type] == "Plus" %>
+  <% @plus_critiques.each do |crit| %>
+    <%= render 'pages/critique', crit:crit %>
+  <% end %>
+<% elsif params[:critique_type] == "Minues" %>
+  <% @neg_critiques.each do |crit| %>
+    <%= render 'pages/critique', crit:crit %>
+  <% end %>
+<% elsif params[:critique_type] == "Recent" %>
+  <% @critiques.each do |crit| %>
+    <%= render 'pages/critique', crit:crit %>
+  <% end %>
+<% end %>

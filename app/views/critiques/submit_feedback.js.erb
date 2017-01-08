@@ -1,0 +1,14 @@
+<% if @critique.save %>
+  $("#recent_critiques").prepend("<%= escape_javascript(render partial: 'pages/critique', :locals => {:crit => @critique}) %>")
+  <% if @critique.positive %>
+    $("#positive_critiques").prepend("<%= escape_javascript(render partial: 'pages/critique', :locals => {:crit => @critique}) %>")
+  <% else !@critique.positive %>
+    $("#negative_critiques").prepend("<%= escape_javascript(render partial: 'pages/critique', :locals => {:crit => @critique}) %>")
+  <% end %>
+  $("#comment").val('');
+  $("#comment").removeClass("comment_error");
+  $(".error_text").text("");
+<% else %>
+  $("#comment").addClass("comment_error");
+  $(".error_text").text("Please do not use profanity");
+<% end %>

@@ -1,0 +1,1 @@
+$(".critique_vote_<%=@critique.id%>").html("<%= escape_javascript(render partial: 'pages/critique_vote', :locals => {:crit => @critique}) %>")

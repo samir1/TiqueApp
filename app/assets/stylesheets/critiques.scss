@@ -7,22 +7,10 @@ html, body {
 }
 
 .positive_comment {
-    //box-shadow: 0 4px 8px 0 #d1cff9;
-    // background-color: #eeedff;
-    //background-color: #FCFCFC;
-    // border-top: 3px solid #A0B3FF;
-    // border-top: 3px solid #7992f7;
-    // border-top: 3px solid #6c98e2;
     border-top: 3px solid #2185C5;
 }
 
 .negative_comment {
-    //box-shadow: 0 4px 8px 0 #ecbef7;
-    // background-color: #fbeaff;
-    //background-color: #FCFCFC;
-    // border-top: 3px solid #FFBCD5;
-    // border-top: 3px solid #fcaecb;
-    // border-top: 3px solid #f95e98;
     border-top: 3px solid #DE264C;
 }
 
@@ -31,7 +19,7 @@ html, body {
     margin-bottom: 20px;
     padding: 5px;
     border-radius: 1px;
-    min-height: 63px;
+    min-height: 70px;
     box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);
     transition: 0.2s;
     padding-top: 10px;
@@ -115,12 +103,41 @@ footer {
 .comment-text {
     display: inline-block;
     width: 90%;
+    word-wrap: break-word;
 }
 
-.upArrow {
+.voteArrow {
     margin-bottom:-4px;
+    cursor: pointer;
 }
 
 .votes_number {
-    margin-bottom:-4px;
+    margin-bottom: -6px;
+    font-size: 17px;
+    margin-top: -6px
+}
+
+.comment_error {
+    border-color: #FF0000;
+    color: #FF0000;
+}
+
+.critique_vote {
+  margin-top: -25px;
+}
+
+.class_name {
+    margin-top: 0px;
+}
+
+.upvoted {
+    color: #2185C5;
+}
+
+.downvoted {
+    color: #FF0000;
+}
+
+#my_feedback_container .voteArrow {
+    color: #dbdbdb;
 }

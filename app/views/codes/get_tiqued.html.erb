@@ -4,7 +4,9 @@
 
 <div class="container">
     <div>
-        Personal code: <%= Code.where(owner: @current_user.id).find_by(code_type: 'personal').code_value %>
+        <% personal_code = @current_user.codes.find_by(code_type: 'personal')%>
+        <% personal_code = personal_code.present? ? personal_code : @current_user.codes.create(title: "Personal Code", code_type: "personal")%>
+        Personal code: <%= personal_code.try(:code_value) %>
     </div>
     <br />
     <div>

@@ -1,11 +1,20 @@
-<% instructor_name = User.find_by(user_code: params[:instructor_code]).fname.capitalize %>
+<% code = Code.find_by(code_id: params[:instructor_code]) %>
+<% user = code.try(:user) %>
+<% instructor_name = user.try(:fname).capitalize %>
+
 <script type="text/javascript">
 
-$(function() {
+  $(function() {
     showRecent();
-});
+  });
 
-function showPluses() {
+  function showPluses() {
+    refreshCritques("Plus", "<%=params[:instructor_code]%>");
+    $("body div.innerNav span").css('font-weight', 200);
+    $("body div.innerNav span").css('color', '#808080');
+    $("body div.innerNav span:nth-child(1)").css('font-weight', 800);
+    $("body div.innerNav span:nth-child(1)").css('color', '#606060');
+
     $("#negative_critiques").hide("fast");
     $("#recent_critiques").hide("fast");
     $("#positive_critiques").show("slow");
@@ -17,11 +26,16 @@ function showPluses() {
     $("#positive_submit_btn").css("text-align","center");
     $("#positive_submit_btn").css("display","inline-block");
 
-
     $("textarea#comment").attr("placeholder", "What do you like about <%= instructor_name %>'s teaching?");
-}
+  }
 
-function showNegs() {
+  function showNegs() {
+    refreshCritques("Minues", "<%=params[:instructor_code]%>");
+    $("body div.innerNav span").css('font-weight', 200);
+    $("body div.innerNav span").css('color', '#808080');
+    $("body div.innerNav span:nth-child(2)").css('font-weight', 800);
+    $("body div.innerNav span:nth-child(2)").css('color', '#606060');
+
     $("#positive_critiques").hide("fast");
     $("#recent_critiques").hide("fast");
     $("#negative_critiques").show("slow");
@@ -35,9 +49,15 @@ function showNegs() {
     $("#negative_submit_btn").css("display","inline-block");
 
     $("textarea#comment").attr("placeholder", "What do you dislike about <%= instructor_name %>'s teaching?");
-}
+  }
 
-function showRecent() {
+  function showRecent() {
+    refreshCritques("Recent", "<%=params[:instructor_code]%>");
+    $("body div.innerNav span").css('font-weight', 200);
+    $("body div.innerNav span").css('color', '#808080');
+    $("body div.innerNav span:nth-child(3)").css('font-weight', 800);
+    $("body div.innerNav span:nth-child(3)").css('color', '#606060');
+
     $("#positive_critiques").hide("fast");
     $("#negative_critiques").hide("fast");
     $("#recent_critiques").show("slow");
@@ -51,160 +71,43 @@ function showRecent() {
     $("#negative_submit_btn").css("float","right");
 
     $("textarea#comment").attr("placeholder", "What do you like or dislike about <%= instructor_name %>'s teaching?");
-}
+  }
+
 </script>
 
-<div class="container">
-    <div class="row">
-        <div class="feedback-list col-md-8 col-md-offset-2">
-            <center><h1><%= instructor_name + " " + User.find_by(user_code: params[:instructor_code]).lname[0,1].capitalize + "." %></h1></center>
-            <div class="innerNav">
-                <span class="hoverUnderline" onclick="showPluses();">Pluses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showNegs();">Minuses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showRecent();">Recent</span>
-            </div>
-            <div id="positive_critiques">
-                <% @plus_critiques.each do |crit| %>
-                    <div class="positive_comment comment">
-                        <span class="comment-text"><%= "#{crit.comment}" %></span>
-                        <% vote_lookup = get_vote_for_critique_id crit.id %>
-                        <% if vote_lookup && vote_lookup.upvote %>
-                            <div class="arrows">
-                                <div class="voteArrow upArrow">▲</div>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, false) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▼</div>
-                                <% end %>
-                            </div>
-                        <% elsif vote_lookup && !vote_lookup.upvote %>
-                            <div class="arrows">
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, true) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▲</div>
-                                <% end %>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <div class="voteArrow downArrow">▼</div>
-                            </div>
-                        <% else %>
-                            <div class="arrows">
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, true) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▲</div>
-                                <% end %>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, false) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
-                                <% end %>
-                            </div>
-                        <% end %>
-                    </div>
-                <% end %>
-            </div>
-            <div id="negative_critiques">
-                <% @neg_critiques.each do |crit| %>
-                    <div class="negative_comment comment">
-                        <span class="comment-text"><%= "#{crit.comment}" %></span>
-                        <% vote_lookup = get_vote_for_critique_id crit.id %>
-                        <% if vote_lookup && vote_lookup.upvote %>
-                            <div class="arrows">
-                                <div class="voteArrow upArrow">▲</div>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, false) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
-                                <% end %>
-                            </div>
-                        <% elsif vote_lookup && !vote_lookup.upvote %>
-                            <div class="arrows">
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, true) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▲</div>
-                                <% end %>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <div class="voteArrow downArrow">▼</div>
-                            </div>
-                        <% else %>
-                            <div class="arrows">
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, true) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▲</div>
-                                <% end %>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, false) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow downArrow">▼</div>
-                                <% end %>
-                            </div>
-                        <% end %>
-                    </div>
-                <% end %>
-            </div>
-            <div id="recent_critiques">
-                <% @critiques.each do |crit| %>
-                    <% if crit.positive %>
-                    <div class="positive_comment comment">
-                    <% else !crit.positive %>
-                    <div class="negative_comment comment">
-                    <% end %>
-                        <span class="comment-text"><%= "#{crit.comment}" %></span>
-                        <% vote_lookup = get_vote_for_critique_id crit.id %>
-                        <% if vote_lookup && vote_lookup.upvote %>
-                            <div class="arrows">
-                                <div class="voteArrow upArrow">▲</div>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, false) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▼</div>
-                                <% end %>
-                            </div>
-                        <% elsif vote_lookup && !vote_lookup.upvote %>
-                            <div class="arrows">
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, true) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▲</div>
-                                <% end %>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <div class="voteArrow downArrow">▼</div>
-                            </div>
-                        <% else %>
-                            <div class="arrows">
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, true) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▲</div>
-                                <% end %>
-                                <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
-                                <%= form_tag("/submit_vote/#{params[:instructor_code]}", method: "post", class:"inline") do %>
-                                    <%= hidden_field_tag(:upvote, false) %>
-                                    <%= hidden_field_tag(:critique_id, crit.id) %>
-                                    <div onclick="$(this).parents('form:first').submit();" class="voteArrow upArrow">▼</div>
-                                <% end %>
-                            </div>
-                        <% end %>
-                    </div>
-                <% end %>
-            </div>
-        </div>
-    </div>
+<div class="container feedback-list col-md-6 col-md-offset-3">
+  <center><h1><%= instructor_name + " " +user.lname[0,1].capitalize + "." %></h1></center>
+  <center><h3 class="class_name"><%= code.try(:title).titlecase %></h3></center>
+  <div class="innerNav">
+    <span class="hoverUnderline" onclick="showPluses();">Pluses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showNegs();">Minuses</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hoverUnderline" onclick="showRecent();">Recent</span>
+  </div>
+
+  <div id="positive_critiques">
+    <% @plus_critiques.each do |crit| %>
+      <%= render 'pages/critique', crit:crit %>
+    <% end %>
+  </div>
+
+  <div id="negative_critiques">
+    <% @neg_critiques.each do |crit| %>
+      <%= render 'pages/critique', crit:crit %>
+    <% end %>
+  </div>
+
+  <div id="recent_critiques">
+    <% @critiques.each do |crit| %>
+      <%= render 'pages/critique', crit:crit %>
+    <% end %>
+  </div>
 </div>
+
 <footer class="footer">
-    <div class="container col-md-6 col-md-offset-3">
-        <%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post") do %>
-            <%= text_area_tag(:instructor_code, nil, name: 'comment', id:"comment", rows: "2", maxlength: "200", class: "form-control", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %>
-            <%= hidden_field_tag(:instructor_code, params[:instructor_code]) %>
-            <br />
-            <%= submit_tag '+', name: 'positive', id:'positive_submit_btn' %>
-            <%= submit_tag '-', name: 'negative', id:'negative_submit_btn' %>
-        <% end %>
-    </div>
+  <div class="container col-md-6 col-md-offset-3">
+    <%= form_tag("/submit_feedback/#{params[:instructor_code]}", method: "post", remote: true) do %>
+      <%= text_area_tag(:instructor_code, nil, name: 'comment', id:"comment", rows: "2", maxlength: "200", class: "form-control", required: true, placeholder: "What do you like or dislike about #{instructor_name}'s teaching?") %><span class="comment_error error_text"></span>
+      <br />
+      <%= submit_tag '+', name: 'positive', id:'positive_submit_btn' %>
+      <%= submit_tag '-', name: 'negative', id:'negative_submit_btn' %>
+    <% end %>
+  </div>
 </footer>

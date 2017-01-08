@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get     '/my_feedback',                      to: 'critiques#my_feedback'
     get     '/my_feedback/:instructor_code',     to: 'critiques#my_feedback_with_code'
     get     '/give_feedback/:instructor_code',   to: 'critiques#give_feedback'
+    get     '/refresh_pluses_minuses/:instructor_code',   to: 'critiques#refresh_pluses_minuses'
     post    '/submit_feedback/:instructor_code', to: 'critiques#submit_feedback'
     get     '/users',                            to: 'home#index'
     get     '/rules',                            to: 'application#rules'
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
     resources :users
     resources :critiques, only: [:show, :index, :destroy]
     resources :codes, only: [:create, :destroy]
-    
+
 end

@@ -1,0 +1,10 @@
+<% if crit.positive %>
+  <div class="positive_comment comment positive_<%=crit.id%>">
+<% elsif !crit.positive %>
+  <div class="negative_comment comment negative_<%=crit.id%>">
+<% end %>
+  <span class="comment-text"><%= "#{crit.comment}" %></span>
+  <div class="critique_vote critique_vote_<%=crit.id%>">
+    <%= render 'pages/critique_vote', crit:crit %>
+  </div>
+</div>

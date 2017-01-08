@@ -77,31 +77,47 @@ class CritiquesController < ApplicationController
   end
 
   def my_feedback_with_code
-    @critiques = Critique.where(code_value: params[:instructor_code]).order(created_at: :desc)
-    @plus_critiques = Critique.where(code_value: params[:instructor_code], positive: true)
-    @neg_critiques = Critique.where(code_value: params[:instructor_code], positive: false)
+    code = Code.find_by(code_id: params[:instructor_code])
+    @critiques = Critique.where(code_value: code.code_value).order(created_at: :desc)
+    @plus_critiques = Critique.where(code_value: code.code_value, positive: true)
+    @neg_critiques = Critique.where(code_value: code.code_value, positive: false)
   end
 
   def give_feedback
-    code = Code.find_by(code_value: params[:instructor_code])
+    code = Code.find_by(code_id: params[:instructor_code])
     if !logged_in?
       redirect_to '/'
     elsif !code
       redirect_to '/viewinstructors'
-    elsif !(InstructorStudentLookup.find_by(code_value: params[:instructor_code], student_id: current_user.id))
+    elsif !(InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id))
       redirect_to '/viewinstructors'
     else
-      @critiques = Critique.where(code_value: params[:instructor_code]).order(created_at: :desc)
-      @plus_critiques = Critique.where(code_value: params[:instructor_code], positive: true).order(votes: :desc)
-      @neg_critiques = Critique.where(code_value: params[:instructor_code], positive: false).order(votes: :desc)
+      @critiques = Critique.where(code_value: code.code_value).order(created_at: :desc)
+      @plus_critiques = Critique.where(code_value: code.code_value, positive: true).order(votes: :desc)
+      @neg_critiques = Critique.where(code_value: code.code_value, positive: false).order(votes: :desc)
+    end
+  end
+
+  def refresh_pluses_minuses
+    code = Code.find_by(code_id: params[:instructor_code])
+    @critiques = @plus_critiques = @neg_critiques = []
+    if code.present?
+      @critiques = Critique.where(code_value: code.code_value).order(created_at: :desc)
+      @plus_critiques = Critique.where(code_value: code.code_value, positive: true).order(votes: :desc)
+      @neg_critiques = Critique.where(code_value: code.code_value, positive: false).order(votes: :desc)
+    end
+    respond_to do |format|
+      format.js
     end
   end
 
   def submit_feedback
+    code = Code.find_by(code_id: params[:instructor_code])
     pos = params[:negative] ? false : true
-    @critique = Critique.new(author_id: current_user.id, code_value: params[:instructor_code], comment: params[:comment], positive: pos)
-    @critique.save
-    redirect_to "/give_feedback/#{params[:instructor_code]}"
+    @critique = Critique.new(author_id: current_user.id, code_value: code.code_value, comment: params[:comment], positive: pos)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

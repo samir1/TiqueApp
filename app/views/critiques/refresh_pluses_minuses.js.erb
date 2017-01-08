@@ -1,0 +1,7 @@
+<% if params[:critique_type] == "Plus" %>
+  $("#positive_critiques").html("<%= escape_javascript(render partial: 'pages/refresh_pluses_minuses', :locals => {:plus_critiques => @plus_critiques}) %>")
+<% elsif params[:critique_type] == "Minues" %>
+  $("#negative_critiques").html("<%= escape_javascript(render partial: 'pages/refresh_pluses_minuses', :locals => {:neg_critiques => @neg_critiques}) %>")
+<% elsif params[:critique_type] == "Recent" %>
+  $("#recent_critiques").html("<%= escape_javascript(render partial: 'pages/refresh_pluses_minuses', :locals => {:critiques => @critiques}) %>")
+<% end %>

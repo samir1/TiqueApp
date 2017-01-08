@@ -4,6 +4,7 @@ $(function() {
 });
 
 function showPluses() {
+    refreshCritques("Plus", "<%=params[:instructor_code]%>");
     $("#negative_critiques").hide("fast");
     $("#recent_critiques").hide("fast");
     $("#positive_critiques").show("slow");
@@ -13,6 +14,7 @@ function showPluses() {
 }
 
 function showNegs() {
+    refreshCritques("Minuses", "<%=params[:instructor_code]%>");
     $("#positive_critiques").hide("fast");
     $("#recent_critiques").hide("fast");
     $("#negative_critiques").show("slow");
@@ -23,6 +25,7 @@ function showNegs() {
 }
 
 function showRecent() {
+    refreshCritques("Recent", "<%=params[:instructor_code]%>");
     $("#positive_critiques").hide("fast");
     $("#negative_critiques").hide("fast");
     $("#recent_critiques").show("slow");
@@ -34,7 +37,7 @@ function showRecent() {
 </script>
 </script>
 
-<div class="container">
+<div id="my_feedback_container" class="container">
     <div class="row">
         <div class="feedback-list col-md-8 col-md-offset-2">
             <center><h3>My Feedback</h3></center>
@@ -44,16 +47,24 @@ function showRecent() {
             <div id="positive_critiques">
                 <% @plus_critiques.each do |crit| %>
                     <div class="positive_comment comment">
-                        <%= "#{crit.comment}" %><br />
-                        <%= "votes: #{get_votes_for_critique_id crit.id}" %>
+                        <span class="comment-text"><%= "#{crit.comment}" %></span>
+                        <div class="arrows">
+                            <div class="voteArrow"><span class="glyphicon glyphicon-menu-up"></span></div>
+                            <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
+                            <div class="voteArrow"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+                        </div>
                     </div>
                 <% end %>
             </div>
             <div id="negative_critiques">
                 <% @neg_critiques.each do |crit| %>
                     <div class="negative_comment comment">
-                        <%= "#{crit.comment}" %><br />
-                        <%= "votes: #{get_votes_for_critique_id crit.id}" %>
+                        <span class="comment-text"><%= "#{crit.comment}" %></span>
+                        <div class="arrows">
+                            <div><span class="glyphicon glyphicon-menu-up"></span></div>
+                            <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
+                            <div class="voteArrow"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+                        </div>
                     </div>
                 <% end %>
             </div>
@@ -64,8 +75,12 @@ function showRecent() {
                     <% else !crit.positive %>
                     <div class="negative_comment comment">
                     <% end %>
-                        <%= "#{crit.comment}" %><br />
-                        <%= "votes: #{get_votes_for_critique_id crit.id}" %>
+                        <span class="comment-text"><%= "#{crit.comment}" %></span>
+                        <div class="arrows">
+                            <div class="voteArrow"><span class="glyphicon glyphicon-menu-up"></span></div>
+                            <div class="votes_number"><%= get_votes_for_critique_id crit.id %></div>
+                            <div class="voteArrow"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+                        </div>
                     </div>
                 <% end %>
             </div>
