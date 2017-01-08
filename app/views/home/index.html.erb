@@ -1,26 +1,234 @@
-<div class="container" style="text-align: center;">
-    <h1>Tique</h1>
-    <p>Feedback made effortless</p>
-    <div>
-        <% if !logged_in? %>
-        <a class="btn btn-primary" id="login-btn" href="/login" style="color:white;">Login</a>
-        <a class="btn btn-success" id="signup-btn" href="/signup" style="color:white;">Signup</a>
-        <% else %>
-        Click 'View Instructors' to give feedback to an instructor.
-        <% end %>
+<!--<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="shortcut icon" href="static/img/favicon.ico">
+
+        <link rel="stylesheet" href="startup/flat-ui/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="startup/flat-ui/css/flat-ui.css">
+
+        <link rel="stylesheet" href="startup/common-files/css/icon-font.css">
+
+        <link rel="stylesheet" href="startup/common-files/css/animations.css">
+        <link rel="stylesheet" href="static/css/style.css">
+
+        <title>Tique</title>
+    </head>
+
+    <body> -->
+        <div class="page-wrapper"><header class="header-2" id="home">
+    <!-- <div class="container">
+        <div class="row">
+            <nav class="navbar col-sm-12" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle"></button>
+                    <a class="brand" href="#"><img src="static/img/Tique_iconcircular.png" width="50" height="50" alt="">Tique</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav pull-right">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#why">Why</a></li>
+                        <li><a href="#how">How</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <ul class="subnav">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div> -->
+</header>
+<section class="header-2-sub bg-wet-asphalt">
+    <div class="background">&nbsp;</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="hero-unit">
+                    <h1 id="tique-logo">Tique</h1>
+                    <p class="fade-in" id="slogan">Feedback made effortless.</p>
+                </div>
+                <div class="btns">
+                    <a class="btn btn-inverse" id="login-btn" href="http://tique-alpha.herokuapp.com/login">Login</a>
+                    <a class="btn btn-danger" id="signup-btn" href="http://tique-alpha.herokuapp.com/signup">Signup</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-            <%= image_tag("Phone_Tilt.jpg", :alt => "Tique", :width => "400px") %>
+</section>
+<section class="content-10" id="why">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>What Makes Tique Feedback Effective?</h3>
+
+                <!-- <p>You can decide whether to create your site using UI Kit blocks or samples.</p> -->
+
+                <div class="features">
+                    <div class="box">
+                        <img src="static/img/simplify-icon.png" width="100" height="100" alt="">
+                        <h6>Simple</h6>
+
+                        <p>Tiques are limited to 200 characters, encouraging direct and succint feedback. Students pick whether they are addressing a strength or weakness, making it easy for teachers to see what's working and what's not.</p>
+                    </div>
+                    <div class="box">
+                        <img src="static/img/immediate-icon.png" width="100" height="100" alt="">
+                        <h6>Immediate</h6>
+
+                        <p>Teachers can place time limits on Tique submissions just like any other assignment so they can take maintain a tight feedback loop between them and their students.</p>
+                    </div>
+                    <div class="box">
+                        <img src="static/img/constructive-icon.png" width="130" height="130" alt="">
+                        <h6>Constructive</h6>
+
+                        <p>Each class has a dedicated Tique moderator that proactively filters out inappropriate and off-topic comments. Users can also vote down feedback that isn't constructive and vote up thoughtful Tiques, ensuring high quality discourse.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2 text-center">
+                <div id="c-10_myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="static/img/2_2.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/3_3.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/4_2.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/5_2.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/7_2.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/8_2.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/9_2.jpg" width="302" height="635" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="static/img/10_2.jpg" width="302" height="635" alt="">
+                        </div>
+                    </div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#c-10_myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="1"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="2"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="3"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="4"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="5"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="6"></li>
+                        <li data-target="#c-10_myCarousel" data-slide-to="7"></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-26 bg-clouds" id="how">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h3>How It Works</h3>
+
+            </div>
         </div>
 
-        <div class="col-lg-3" style="padding-top: 50px;">
-            Why is getting honest, helpful feedback so hard? Tique makes it easy allowing to get bite-sized critiques anonymously from those you've shared a consent code with.
+        <div class="row features">
+            <div class="col-sm-3">
+                <img src="static/img/spam-icon.png" alt="" width="100" height="100">
+                <h6>No Spam</h6>
+                Foul language is automatically filtered.<br />Useless or destructive comments are voted out by the community.
+            </div>
+            <div class="col-sm-4 col-sm-offset-1">
+                <img src="startup/common-files/icons/Responsive1@2x.png" alt="" width="100" height="100">
+                <h6>Realtime Feedback</h6>
+                Teachers get notified as Tiques are made, so they can take action class-to-class, rather than each semester.
+            </div>
+            <div class="col-sm-3 col-sm-offset-1">
+                <img src="static/img/metrics-icon.png" alt="" width="100" height="100">
+                <h6>Quantitative Metrics</h6>
+                Tique provides a weekly summary of your most relevant feedback. It also regularly reports data on engagement and overall student satisfaction so teachers can objectively track their progress.
+            </div>
         </div>
     </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted" style="text-align:right;">Patent Pending</p>
-  </div>
+</section>
+<footer class="footer-6" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div><a class="brand" href="#">Tique</a></div>
+                <div>Patent Pending</div>
+            </div>
+            <nav>
+                <div class="col-sm-2">
+                    <h6>Company</h6>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Career</a></li>
+                        <li><a href="mailto:tiqueapp@gmail.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h6>Business</h6>
+                    <ul>
+                        <li><a href="#">Advertising</a></li>
+                        <li><a href="#">Inquiries</a></li>
+                        <li><a href="#">Brands</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h6>Legal</h6>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Copyright</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-sm-3">
+                <h6>Subscribe</h6>
+                    <form action="/submit" method="post">
+                <div class="input-group">
+                        <input type="text" name="email" class="form-control">
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn" type="button" />
+                            <span class="fui-arrow-right"> </span>
+                        </span>
+                </div>
+
+                    </form>
+            </div>
+        </div>
+    </div>
 </footer>
+
+            <script src="startup/common-files/js/jquery-1.10.2.min.js"></script>
+            <script src="startup/common-files/js/jquery.bxslider.min.js"></script>
+            <script src="startup/common-files/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+            <script src="startup/common-files/js/jquery.sharrre.min.js"></script>
+            <script src="startup/flat-ui/js/bootstrap.min.js"></script>
+            <script src="startup/common-files/js/masonry.pkgd.min.js"></script>
+            <script src="startup/common-files/js/modernizr.custom.js"></script>
+            <script src="startup/common-files/js/page-transitions.js"></script>
+            <script src="startup/common-files/js/easing.min.js"></script>
+            <script src="startup/common-files/js/jquery.svg.js"></script>
+            <script src="startup/common-files/js/jquery.svganim.js"></script>
+            <script src="startup/common-files/js/jquery.backgroundvideo.min.js"></script>
+            <script src="startup/common-files/js/froogaloop.min.js"></script>
+            <script src="startup/common-files/js/startup-kit.js"></script>
+        </div>
+    <!-- </body>
+</html> -->
