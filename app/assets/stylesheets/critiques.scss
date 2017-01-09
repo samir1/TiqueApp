@@ -91,10 +91,10 @@ footer {
 }
 
 .arrows {
-    z-index:10;
+    z-index: 10;
     float: right;
-    padding-right:5px;
-    text-align:center;
+    padding-right: 5px;
+    text-align: center;
     top: 0px;
     right: 0px;
     color: #797979;
@@ -141,4 +141,8 @@ footer {
 #my_feedback_container .voteArrow {
     color: #dbdbdb;
     cursor: default;
+}
+
+.arrows {
+    z-index: 10;
 }
