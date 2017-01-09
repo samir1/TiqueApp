@@ -4,7 +4,6 @@ $(function() {
 });
 
 function showPluses() {
-    refreshCritques("Plus", "<%=params[:instructor_code]%>");
     $("#negative_critiques").hide("fast");
     $("#recent_critiques").hide("fast");
     $("#positive_critiques").show("slow");
@@ -14,7 +13,6 @@ function showPluses() {
 }
 
 function showNegs() {
-    refreshCritques("Minuses", "<%=params[:instructor_code]%>");
     $("#positive_critiques").hide("fast");
     $("#recent_critiques").hide("fast");
     $("#negative_critiques").show("slow");
@@ -25,7 +23,6 @@ function showNegs() {
 }
 
 function showRecent() {
-    refreshCritques("Recent", "<%=params[:instructor_code]%>");
     $("#positive_critiques").hide("fast");
     $("#negative_critiques").hide("fast");
     $("#recent_critiques").show("slow");
