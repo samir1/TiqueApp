@@ -5,12 +5,11 @@ class UsersController < ApplicationController
     # GET /users.json
     def index
         # for functional tests and user management
-        if !current_user
-            redirect_to '/'
-        elsif current_user.email != 'samir@test.com' || current_user.email != 'priyatham.ven@gmail.com'
-                redirect_to '/'
+        if current_user.email == 'samir@test.com' || current_user.email == 'priyatham.ven@gmail.com'
+          @users = User.all
+        else
+          redirect_to '/'
         end
-        @users = User.all
     end
 
     # GET /users/1
