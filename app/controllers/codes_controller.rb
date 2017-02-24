@@ -24,11 +24,74 @@ class CodesController < ApplicationController
   # POST /codes
   # POST /codes.json
   def create
+
     @code = Code.new(code_params)
+    @code.ta_emails = params[:ta_emails]
 
     respond_to do |format|
       if @code.save
+
+        # find and update user with email specified by TA email list
+        if !@code.ta_emails.nil?
+          eval(@code.ta_emails).each do |ta_email|
+            user = User.find_by(email: ta_email)
+            if !user.nil?
+              instructor_stu = InstructorStudentLookup.find_by(code_value: @code.code_value, student_id: user.id)
+              if instructor_stu.nil?
+                instructor_stu = InstructorStudentLookup.new
+                instructor_stu.code_value = @code.code_value
+                instructor_stu.student_id = user.id
+                instructor_stu.isTA = true
+                instructor_stu.save
+              end
+            end
+          end
+        end
+
         format.html { redirect_to '/get_tiqued', notice: 'Code was successfully created.' }
+        format.json { render :show, status: :created, location: @code }
+      else
+        format.html { render :new }
+        format.json { render json: @code.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # post /edit_ta_emails
+  def edit_ta_emails
+    @code_item = Code.find(params[:code_id])
+  end
+
+  # post /update_ta_emails
+  def update_ta_emails
+    # update ta_emails
+    code = Code.find_by(owner: params[:owner], code_value: params[:code_value])
+    code.ta_emails = params[:ta_emails]
+
+    respond_to do |format|
+      if code.save
+
+        # find and update user with email specified by TA email list
+
+        if !code.ta_emails.nil?
+          eval(code.ta_emails).each do |ta_email|
+            user = User.find_by(email: ta_email)
+            if !user.nil?
+              instructor_stu = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: user.id)
+              if instructor_stu.nil?
+                instructor_stu = InstructorStudentLookup.new
+                instructor_stu.code_value = code.code_value
+                instructor_stu.student_id = user.id
+                instructor_stu.isTA = true
+                instructor_stu.save
+              else
+                instructor_stu.isTA = true
+                instructor_stu.save
+              end
+            end
+          end
+        end
+        format.html { redirect_to '/get_tiqued', notice: 'Code was successfully updated.' }
         format.json { render :show, status: :created, location: @code }
       else
         format.html { render :new }

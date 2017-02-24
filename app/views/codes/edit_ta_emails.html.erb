@@ -1,0 +1,58 @@
+<% if !logged_in? %>
+<% controller.redirect_to '/' %>
+<% end %>
+
+<div class="container">
+
+    <div class="form-frame">
+        <div class="title">
+            <p>
+                Title: <%= @code_item.title %>
+            </p>
+            <p>
+                Code: <%= @code_item.code_value %>
+            </p>
+        </div>
+        <div>
+            <%= form_tag("/update_ta_emails", method: "post") do %>
+                <%= hidden_field_tag(:owner, current_user.id) %>
+                <%= hidden_field_tag(:code_value, @code_item.code_value) %>
+
+                <div id="multi_tas_div">
+                    <% if @code_item.ta_emails %>
+                        <% eval(@code_item.ta_emails).each do |item| %>
+                            <div>
+                                <input type="text" name="ta_emails[]" value=<%= item %>>
+                                <a href="javascript:;" onclick="delete_ta_btn(this);">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                                </br>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="add_ta_input">Add TA</button>
+
+                <div class="actions">
+                    <%= submit_tag 'Save', class: "btn btn-success" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function(){
+
+        $('#add_ta_input').click(function(){
+            var inner_html = '<div><input type="text" name="ta_emails[]" placeholder="TA Email Address"><a href="javascript:;" onclick="delete_ta_btn(this);"><span class="glyphicon glyphicon-remove"></span></br></div>';
+            $('#multi_tas_div').append(inner_html);
+        });
+    });
+
+    function delete_ta_btn(e){
+        $(e).parent().remove();
+    }
+</script>

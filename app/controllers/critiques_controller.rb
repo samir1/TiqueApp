@@ -15,19 +15,10 @@ class CritiquesController < ApplicationController
     end
   end
 
-  # GET /critiques/1
-  # GET /critiques/1.json
-  # def show
-  # end
-
   # GET /critiques/new
   def new
     @critique = Critique.new
   end
-
-  # GET /critiques/1/edit
-  # def edit
-  # end
 
   # POST /critiques
   # POST /critiques.json
@@ -44,20 +35,6 @@ class CritiquesController < ApplicationController
       end
     end
   end
-
-  # PATCH/PUT /critiques/1
-  # PATCH/PUT /critiques/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @critique.update(critique_params)
-  #       format.html { redirect_to @critique, notice: 'Critique was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @critique }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @critique.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # DELETE /critiques/1
   # DELETE /critiques/1.json
@@ -92,6 +69,7 @@ class CritiquesController < ApplicationController
     elsif !(InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id))
       redirect_to '/viewinstructors'
     else
+      @isTA = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id).isTA
       @critiques = Critique.where(code_value: code.code_value).order(created_at: :desc)
       @plus_critiques = Critique.where(code_value: code.code_value, positive: true).order(votes: :desc)
       @neg_critiques = Critique.where(code_value: code.code_value, positive: false).order(votes: :desc)
@@ -102,6 +80,25 @@ class CritiquesController < ApplicationController
     code = Code.find_by(code_id: params[:instructor_code])
     @critiques = @plus_critiques = @neg_critiques = []
     if code.present?
+      @isTA = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id).isTA
+      @critiques = Critique.where(code_value: code.code_value).order(created_at: :desc)
+      @plus_critiques = Critique.where(code_value: code.code_value, positive: true).order(votes: :desc)
+      @neg_critiques = Critique.where(code_value: code.code_value, positive: false).order(votes: :desc)
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_critique
+    code = Code.find_by(code_id: params[:instructor_code])
+
+    @critique = Critique.find(params[:critique_id])
+    @critique.destroy
+
+    @critiques = @plus_critiques = @neg_critiques = []
+    if code.present?
+      @isTA = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id).isTA
       @critiques = Critique.where(code_value: code.code_value).order(created_at: :desc)
       @plus_critiques = Critique.where(code_value: code.code_value, positive: true).order(votes: :desc)
       @neg_critiques = Critique.where(code_value: code.code_value, positive: false).order(votes: :desc)
@@ -114,6 +111,7 @@ class CritiquesController < ApplicationController
   def submit_feedback
     code = Code.find_by(code_id: params[:instructor_code])
     pos = params[:negative] ? false : true
+    @isTA = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: current_user.id).isTA
     @critique = Critique.new(author_id: current_user.id, code_value: code.code_value, comment: params[:comment], positive: pos)
     respond_to do |format|
       format.js

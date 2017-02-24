@@ -16,6 +16,5 @@ class VotesController < ApplicationController
       format.js
     end
 
-    # redirect_to "/give_feedback/#{params[:instructor_code]}"
   end
 end

@@ -16,10 +16,16 @@ Rails.application.routes.draw do
     get     '/give_feedback/:instructor_code',   to: 'critiques#give_feedback'
     get     '/refresh_pluses_minuses/:instructor_code',   to: 'critiques#refresh_pluses_minuses'
     post    '/submit_feedback/:instructor_code', to: 'critiques#submit_feedback'
-    get     '/users',                            to: 'users#index'
+    post    '/delete_critique/:instructor_code', to: 'critiques#delete_critique'
+    get     '/users',                            to: 'home#index'
     get     '/rules',                            to: 'application#rules'
     post    '/submit_vote/:instructor_code',     to: 'votes#create'
     get     '/get_tiqued',                       to: 'codes#get_tiqued'
+
+    # TODO: edit_ta_emails needs to use GET instead of POST
+    get     '/edit_ta_emails',                   to: 'codes#get_tiqued'
+    post    '/edit_ta_emails',                   to: 'codes#edit_ta_emails'
+    post    '/update_ta_emails',                 to: 'codes#update_ta_emails'
     resources :users
     resources :critiques, only: [:show, :index, :destroy]
     resources :codes, only: [:create, :destroy]

@@ -1,6 +1,15 @@
 <div class="container">
     <% @my_codes.each do |code| %>
-    <a href="/my_feedback/<%= code.code_id %>"><%= code.title %></a>
-    <br />
+        <% if code.ta_emails %>
+        <div style="padding: 5px 12px;">
+            <a href="/my_feedback/<%= code.code_id %>"><%= code.title %></a><br>
+            <% eval(code.ta_emails).each do |ta_email| %>
+                <% name = get_name_from_email(ta_email) %>
+                <% if !name.nil? %>
+                    <div class="ta-mail-item" style="margin-top: 5px;"><%= get_name_from_email ta_email %></div>
+                <% end %>
+            <% end %>
+        </div>
+        <% end %>
     <% end %>
 </div>

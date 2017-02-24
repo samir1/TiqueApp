@@ -25,3 +25,22 @@ body > div {
 html, body {
     font-family: 'Roboto', sans-serif;
 }
+
+.ta-mail-item {
+	/* display: inline-block; */
+	padding: 2px 10px;
+	margin-right: 5px;
+}
+
+.close-comment {
+    position: relative;
+    float: left;
+    left: -17px;
+    top: -25px;
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 50%;
+}

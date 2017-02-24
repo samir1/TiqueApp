@@ -1,0 +1,3 @@
+$("#positive_critiques").html("<%= escape_javascript(render partial: 'pages/critique_list', :locals => {:critiques => @plus_critiques}) %>")
+$("#negative_critiques").html("<%= escape_javascript(render partial: 'pages/critique_list', :locals => {:critiques => @neg_critiques}) %>")
+$("#recent_critiques").html("<%= escape_javascript(render partial: 'pages/critique_list', :locals => {:critiques => @critiques}) %>")

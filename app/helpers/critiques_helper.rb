@@ -1,5 +1,7 @@
 module CritiquesHelper
 
+	include CodesHelper
+
     def get_votes_for_critique_id critique_id
         Vote.where(critique_id: critique_id, upvote: true).count - Vote.where(critique_id: critique_id, upvote: false).count
     end
