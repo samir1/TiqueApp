@@ -73,7 +73,7 @@ class CritiquesController < ApplicationController
     if !logged_in?
       redirect_to '/'
     end
-    @my_codes = Code.where(owner: current_user.id)
+    @my_codes = Code.where(owner: current_user.id).where.not(code_type: 'personal')
   end
 
   def my_feedback_with_code
