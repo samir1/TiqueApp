@@ -114,7 +114,18 @@ footer {
     display: inline-block;
     width: 90%;
     word-wrap: break-word;
+    margin-left: 5px;
+}
+
+#give_feedback_container .comment-text-is-ta {
     margin-left: -10px;
+}
+
+#give_feedback_container .comment-text {
+    display: inline-block;
+    width: 90%;
+    word-wrap: break-word;
+    // margin-left: -10px;
 }
 
 #my_feedback_container .comment-text {

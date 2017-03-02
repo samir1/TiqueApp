@@ -64,29 +64,50 @@ class CodesController < ApplicationController
 
   # post /update_ta_emails
   def update_ta_emails
+
     # update ta_emails
     code = Code.find_by(owner: params[:owner], code_value: params[:code_value])
-    code.ta_emails = params[:ta_emails]
+
+    if params[:ta_emails]
+      code.ta_emails = params[:ta_emails].uniq.reject { |c| c.empty? }
+    else
+      code.ta_emails = nil
+    end
 
     respond_to do |format|
       if code.save
 
-        # find and update user with email specified by TA email list
+        # remove deleted TAs from Code and InstructorStudentLookup
+        students_in_class = InstructorStudentLookup.where(code_value: code.code_value, isTA: true)
+        puts students_in_class.inspect
+        students_in_class.each do |student_lookup|
+          user = User.find(student_lookup.student_id)
+          if user
+            if (!code.ta_emails) or (code.ta_emails and !code.ta_emails.include? user.email)
+              student_lookup.isTA = false
+              student_lookup.save
+            end
+          end
+        end
 
+
+        # find and update user with email specified by TA email list
         if !code.ta_emails.nil?
           eval(code.ta_emails).each do |ta_email|
-            user = User.find_by(email: ta_email)
-            if !user.nil?
-              instructor_stu = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: user.id)
-              if instructor_stu.nil?
-                instructor_stu = InstructorStudentLookup.new
-                instructor_stu.code_value = code.code_value
-                instructor_stu.student_id = user.id
-                instructor_stu.isTA = true
-                instructor_stu.save
-              else
-                instructor_stu.isTA = true
-                instructor_stu.save
+            if ta_email.length > 1
+              user = User.find_by(email: ta_email)
+              if user
+                instructor_stu = InstructorStudentLookup.find_by(code_value: code.code_value, student_id: user.id)
+                if instructor_stu.nil?
+                  instructor_stu = InstructorStudentLookup.new
+                  instructor_stu.code_value = code.code_value
+                  instructor_stu.student_id = user.id
+                  instructor_stu.isTA = true
+                  instructor_stu.save
+                else
+                  instructor_stu.isTA = true
+                  instructor_stu.save
+                end
               end
             end
           end

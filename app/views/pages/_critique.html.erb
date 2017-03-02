@@ -10,7 +10,11 @@
   </a>
 <% end %>
 
+<% if @isTA %>
+  <span class="comment-text comment-text-is-ta"><%= "#{crit.comment}" %></span>
+<% else %>
   <span class="comment-text"><%= "#{crit.comment}" %></span>
+<% end %>
   <div class="critique_vote critique_vote_<%=crit.id%>">
     <%= render 'pages/critique_vote', crit:crit %>
   </div>
