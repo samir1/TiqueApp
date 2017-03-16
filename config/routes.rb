@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get     '/refresh_pluses_minuses/:instructor_code',   to: 'critiques#refresh_pluses_minuses'
     post    '/submit_feedback/:instructor_code', to: 'critiques#submit_feedback'
     post    '/delete_critique/:instructor_code', to: 'critiques#delete_critique'
-    get     '/users',                            to: 'users#index'    
+    get     '/users',                            to: 'users#index'
     get     '/rules',                            to: 'application#rules'
     post    '/submit_vote/:instructor_code',     to: 'votes#create'
     get     '/get_tiqued',                       to: 'codes#get_tiqued'
